@@ -5,9 +5,9 @@
 
 static MazeGenerator gen;
 
-void Generate(int row, int column)
+void Generate(int rowNum, int columnNum)
 {
-	gen = MazeGenerator(row, column);
+	gen = MazeGenerator(rowNum, columnNum);
 }
 
 bool ExistTopWall(int row, int column)

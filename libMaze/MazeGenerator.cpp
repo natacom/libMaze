@@ -10,9 +10,9 @@ namespace {
 	constexpr bool debugLog = false;
 }
 
-MazeGenerator::MazeGenerator(int row, int column)
-	: m_columnNum(column)
-	, m_rowNum(row)
+MazeGenerator::MazeGenerator(int rowNum, int columnNum)
+	: m_columnNum(columnNum)
+	, m_rowNum(rowNum)
 {
 	generate();
 }

@@ -10,7 +10,7 @@ class MazeGenerator
 {
 public:
 	MazeGenerator() : MazeGenerator(0, 0) { };
-	MazeGenerator(int row, int column);
+	MazeGenerator(int rowNum, int columnNum);
 
 	int getColumn() { return m_columnNum; }
 	int getRow() { return m_rowNum; }
