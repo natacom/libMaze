@@ -13,9 +13,9 @@ public:
 		std::shared_ptr<Cell> const& bottomCell,
 		std::shared_ptr<Cell> const& leftCell);
 
-	int getId() { return m_id; }
+	int getId() const noexcept { return m_id; }
 	bool connect(std::shared_ptr<Cell> const& cell, Direction direction);
-	void getWalls(bool& top, bool& right, bool& bottom, bool& left);
+	void getWalls(bool& top, bool& right, bool& bottom, bool& left) const noexcept;
 
 private:
 	void setId(int newId, Direction from);

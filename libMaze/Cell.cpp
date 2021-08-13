@@ -52,7 +52,7 @@ bool Cell::connect(std::shared_ptr<Cell> const& cell, Direction direction)
 	return true;
 }
 
-void Cell:: getWalls(bool& top, bool& right, bool& bottom, bool& left)
+void Cell:: getWalls(bool& top, bool& right, bool& bottom, bool& left) const noexcept
 {
 	top    = (m_topCell    == nullptr);
 	right  = (m_rightCell  == nullptr);

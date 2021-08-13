@@ -17,12 +17,12 @@ MazeGenerator::MazeGenerator(int rowNum, int columnNum)
 	generate();
 }
 
-void MazeGenerator::getWalls(int row, int column, bool& top, bool& right, bool& bottom, bool& left)
+void MazeGenerator::getWalls(int row, int column, bool& top, bool& right, bool& bottom, bool& left) const
 {
-	return m_cells[getIndex(row, column)]->getWalls(top, right, bottom, left);
+	return m_cells.at(getIndex(row, column))->getWalls(top, right, bottom, left);
 }
 
-bool MazeGenerator::existWall(int row, int column, Direction direction)
+bool MazeGenerator::existWall(int row, int column, Direction direction) const
 {
 	bool top, right, bottom, left;
 	getWalls(row, column, top, right, bottom, left);
@@ -37,7 +37,7 @@ bool MazeGenerator::existWall(int row, int column, Direction direction)
 	}
 }
 
-int MazeGenerator::getIndex(int row, int column)
+int MazeGenerator::getIndex(int row, int column) const noexcept
 {
 	return row * m_columnNum + column;
 }
@@ -74,16 +74,16 @@ void MazeGenerator::generate()
 				// Top
 				if (r > 0 && rand() % 2 == 0)
 				{
-					m_cells[getIndex(r, c)]->connect(m_cells[getIndex(r - 1, c)], Direction::Top);
+					m_cells[getIndex(r, c)]->connect(m_cells.at(getIndex(r - 1, c)), Direction::Top);
 				}
 				// Left
 				if (c > 0 && rand() % 2 == 0)
 				{
-					m_cells[getIndex(r, c)]->connect(m_cells[getIndex(r, c - 1)], Direction::Left);
+					m_cells[getIndex(r, c)]->connect(m_cells.at(getIndex(r, c - 1)), Direction::Left);
 				}
 
-				minId = min(minId, m_cells[getIndex(r, c)]->getId());
-				maxId = max(maxId, m_cells[getIndex(r, c)]->getId());
+				minId = min(minId, m_cells.at(getIndex(r, c))->getId());
+				maxId = max(maxId, m_cells.at(getIndex(r, c))->getId());
 
 				if (debugLog)
 				{
@@ -98,7 +98,7 @@ void MazeGenerator::generate()
 	}
 }
 
-void MazeGenerator::debugPrint()
+void MazeGenerator::debugPrint() const
 {
 	static const std::string k_hBorder = "--";
 	static const std::string k_hPath = "  ";
@@ -123,7 +123,7 @@ void MazeGenerator::debugPrint()
 		for (int c = 0; c < m_columnNum; ++c)
 		{
 			bool dummy, right;
-			m_cells[getIndex(r, c)]->getWalls(dummy, right, dummy, dummy);
+			m_cells.at(getIndex(r, c))->getWalls(dummy, right, dummy, dummy);
 
 			mazeStr << std::setw(2) << std::to_string(m_cells[getIndex(r, c)]->getId())
 					<< (right ? k_vBorder : k_vPath);
@@ -135,7 +135,7 @@ void MazeGenerator::debugPrint()
 		for (int c = 0; c < m_columnNum; ++c)
 		{
 			bool dummy, bottom;
-			m_cells[getIndex(r, c)]->getWalls(dummy, dummy, bottom, dummy);
+			m_cells.at(getIndex(r, c))->getWalls(dummy, dummy, bottom, dummy);
 
 			mazeStr << (bottom ? k_hBorder : k_hPath)
 					<< k_crossing;
