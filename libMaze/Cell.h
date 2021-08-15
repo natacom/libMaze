@@ -15,7 +15,7 @@ public:
 
 	int getId() const noexcept { return m_id; }
 	bool connect(std::shared_ptr<Cell> const& cell, Direction direction);
-	void getWalls(bool& top, bool& right, bool& bottom, bool& left) const noexcept;
+	tWallExistence getWalls() const;
 
 private:
 	void setId(int newId, Direction from);

@@ -15,7 +15,7 @@ public:
 	int getColumn() const noexcept { return m_columnNum; }
 	int getRow() const noexcept { return m_rowNum; }
 
-	void getWalls(int row, int column, bool& top, bool& right, bool& bottom, bool& left) const;
+	tWallExistence getWalls(int row, int column) const;
 	bool existWall(int row, int column, Direction direction) const;
 
 private:

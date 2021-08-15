@@ -52,12 +52,13 @@ bool Cell::connect(std::shared_ptr<Cell> const& cell, Direction direction)
 	return true;
 }
 
-void Cell:: getWalls(bool& top, bool& right, bool& bottom, bool& left) const noexcept
+tWallExistence Cell::getWalls() const
 {
-	top    = (m_topCell    == nullptr);
-	right  = (m_rightCell  == nullptr);
-	bottom = (m_bottomCell == nullptr);
-	left   = (m_leftCell   == nullptr);
+	return tWallExistence(
+		m_topCell    == nullptr,
+		m_rightCell  == nullptr,
+		m_bottomCell == nullptr,
+		m_leftCell   == nullptr);
 }
 
 void Cell::setId(int newId, Direction to)
